@@ -1,0 +1,23 @@
+The following CSS code snippet demonstrates an uncommon error related to specificity and inheritance:
+
+```css
+div {
+  color: blue;
+}
+
+.special {
+  color: red;
+}
+
+.special div {
+  color: green;
+}
+
+.special p {
+  color: purple;
+}
+```
+
+The unexpected behavior arises when you use the `.special div` rule.  While it intends to override the `div` rule's `color: blue` for divs *within* a `.special` element, the specificity of `.special div` is higher than `div`, but not as high as `.special p`.  It's easy to assume that `div` within `.special` would be green, but it might not always behave that way. It actually depends on where the div is nested. If the div is a direct child of the element with the class `.special`, then it will be green. However, if it is a deeper descendant, the specificity of the inherited color will influence the outcome. 
+
+The unexpected behavior comes from the subtle way CSS specificity works, particularly with nested elements. 
