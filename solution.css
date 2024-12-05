@@ -1,0 +1,21 @@
+The solution to this issue usually involves ensuring that the specificity of your styles is sufficient to override the inheritance or restructuring your CSS to make the specificity calculation clearer. One approach would be to increase the specificity of the rule targeting the nested div. For instance:
+
+```css
+div {
+  color: blue;
+}
+
+.special {
+  color: red;
+}
+
+.special > div {
+  color: green; /*Using the child combinator > increases specificity*/
+}
+
+.special p {
+  color: purple;
+}
+```
+
+Using the `>` child combinator ensures that only direct children of `.special` are affected by the `color: green` style.  This clarifies the intent and avoids the unexpected behavior.  Another solution might involve using more specific classes or IDs on the nested elements to ensure the desired style is applied without ambiguity.
